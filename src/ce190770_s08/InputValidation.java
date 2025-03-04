@@ -29,6 +29,7 @@ public class InputValidation {
             try {
                 // Parse user input as integer after trimming whitespace
                 int in = Integer.parseInt(sc.nextLine().trim());
+                // Return valid input
                 return in;
             } catch (Exception e) {
                 // Display error message if input cannot be parsed as integer

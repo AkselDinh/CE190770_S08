@@ -46,6 +46,7 @@ public class NumberConverter {
                     // Skip first bit since octal only needs 3 bits (0-7 = 000-111)
                     res += binaryList[inputInt].substring(1) + " ";
                 }
+                // Break switch after done
                 break;
 
             case 16:
@@ -55,14 +56,17 @@ public class NumberConverter {
                     if (s.matches("[0-9]")) {
                         // Handle numeric digits 0-9
                         int inputInt = Integer.parseInt(s);
+                        // Add input to result
                         res += binaryList[inputInt] + " ";
-                    } else if (s.matches("[A-F]")) {
                         // Handle hex letters A-F
+                    } else if (s.matches("[A-F]")) {
                         // Convert A-F to values 10-15 by subtracting ASCII offset
                         char c = s.charAt(0);
+                        // Add input to result
                         res += binaryList[(int) c - 55] + " ";
                     }
                 }
+                // Break switch after done
                 break;
         }
         // Return result after conversion
