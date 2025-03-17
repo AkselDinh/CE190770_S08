@@ -213,7 +213,7 @@ public class InputValidation {
                 break;
             case 16:
                 // Check if input contains only hex digits (0-9a-f)
-                valid = in.matches("[0-9a-f]+");
+                valid = in.matches("[0-9a-fA-F]+");
                 break;
         }
         // Return true/false for validity

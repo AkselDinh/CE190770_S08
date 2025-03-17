@@ -21,18 +21,18 @@ public class UI {
      * conversion operations Continues until program is terminated
      */
     public void loop() {
+        // Tracking flag for continue the loop
+        boolean cont = true;
         // Start infinite loop for continuous conversions
         do {
             // Display welcome message
             welcome();
             // Perform conversion operation
             convert();
-            // Display continue message
-            System.out.println("Press any key to continue converting.");
-            // Wait for user input before continuing
-            InputValidation.sc.nextLine();
+            // Ask if user want to continue
+            cont = takeContinue();
             // Continue loop indefinitely    
-        } while (true);
+        } while (cont);
     }
 
     /**
@@ -42,6 +42,41 @@ public class UI {
     public void welcome() {
         // Print welcome message to console
         System.out.println("Convert Hexadecimal number / Octal number to Binary program");
+    }
+    
+    /**
+     * Method to handle continuation prompt
+     *
+     * @return boolean indicating whether to continue or not
+     */
+    private boolean takeContinue() {
+        // Infinite loop until valid input received
+        while (true) {
+            // Start of try block for exception handling
+            try {
+                // Prompts user for Y/N input
+                System.out.printf("Do you want to continue? (Y/N):");
+                // Gets first character of validated input in uppercase
+                switch (InputValidation.getSingleStringNonEmpty().toUpperCase().charAt(0)) {
+                    // If user enters Y
+                    case 'Y':
+                        // Continue program
+                        return true;
+                    // If user enters N
+                    case 'N':
+                        // End program
+                        return false;
+                    // If user enters anything else
+                    default:
+                        // Prompts for valid input
+                        System.out.println("Please enter 'Y' to continue or 'N' to exit.");
+                }
+                // Catches any exceptions
+            } catch (Exception ex) {
+                // Prints the exception message
+                System.out.println(ex.getMessage());
+            }
+        }
     }
 
     /**
@@ -60,7 +95,7 @@ public class UI {
             // Extract the number part (everything except last character)
             String number = input.substring(0, input.length() - 1);
             // Extract the base indicator (last character)
-            char base = input.charAt(input.length() - 1);
+            char base = input.toLowerCase().charAt(input.length() - 1);
 
             // Check which base was specified
             switch (base) {
@@ -120,6 +155,6 @@ public class UI {
      */
     public void printRes(String res) {
         // Print the binary result with formatting
-        System.out.printf("Binary number: %s\n", res);
+        System.out.printf("Binary number: %sb\n", res);
     }
 }

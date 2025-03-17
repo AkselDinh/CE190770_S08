@@ -70,6 +70,6 @@ public class NumberConverter {
                 break;
         }
         // Return result after conversion
-        return res;
+        return res.substring(0, res.length()-1);
     }
 }
